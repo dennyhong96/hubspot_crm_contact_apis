@@ -176,3 +176,86 @@ const batchArchive = async () => {
   }
 };
 // batchArchive();
+
+const batchCreateContacts = async () => {
+  try {
+    const newContactsInfo = [
+      {
+        company: "Gabtune",
+        firstname: "Hewitt",
+        lastname: "Burleton",
+        email: "hburleton0@vistaprint.com",
+        phone: "285-116-2845",
+      },
+      {
+        company: "Eimbee",
+        firstname: "Adam",
+        lastname: "Fogarty",
+        email: "afogarty1@timesonline.co.uk",
+        phone: "679-437-5454",
+      },
+      {
+        company: "Chatterbridge",
+        firstname: "Skye",
+        lastname: "Schimmang",
+        email: "sschimmang2@amazon.co.uk",
+        phone: "447-300-2180",
+      },
+      {
+        company: "Voonyx",
+        firstname: "Melessa",
+        lastname: "Dudill",
+        email: "mdudill3@hexun.com",
+        phone: "687-884-8033",
+      },
+      {
+        company: "Photolist",
+        firstname: "Karyn",
+        lastname: "Joreau",
+        email: "kjoreau4@hatena.ne.jp",
+        phone: "985-821-4830",
+      },
+      {
+        company: "Youbridge",
+        firstname: "Floyd",
+        lastname: "Costain",
+        email: "fcostain5@eventbrite.com",
+        phone: "110-388-8807",
+      },
+      {
+        company: "Tagfeed",
+        firstname: "Al",
+        lastname: "Graser",
+        email: "agraser6@opera.com",
+        phone: "107-160-9306",
+      },
+      {
+        company: "Photobug",
+        firstname: "Harriette",
+        lastname: "Cornbell",
+        email: "hcornbell7@biglobe.ne.jp",
+        phone: "139-345-4917",
+      },
+      {
+        company: "Mydo",
+        firstname: "Ranna",
+        lastname: "Frise",
+        email: "rfrise8@businessinsider.com",
+        phone: "378-455-6814",
+      },
+      {
+        company: "Innotype",
+        firstname: "Gerik",
+        lastname: "Ferrar",
+        email: "gferrar9@harvard.edu",
+        phone: "259-391-8209",
+      },
+    ].map((c) => ({ properties: c }));
+
+    const data = await hubspotClient.crm.contacts.batchApi.create({ inputs: newContactsInfo });
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+};
+batchCreateContacts();
