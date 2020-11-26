@@ -258,4 +258,21 @@ const batchCreateContacts = async () => {
     console.error(error);
   }
 };
-batchCreateContacts();
+// batchCreateContacts();
+
+const batchReadContacts = async () => {
+  try {
+    const fiveContactsToRead = (await listContacts())
+      .map((contact) => ({ id: contact.properties.email }))
+      .slice(0, 5);
+
+    const { body: contacts } = await hubspotClient.crm.contacts.batchApi.read({
+      inputs: fiveContactsToRead,
+      idProperty: "email",
+    });
+    console.log(contacts);
+  } catch (error) {
+    console.error(error);
+  }
+};
+batchReadContacts();
