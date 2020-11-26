@@ -27,6 +27,7 @@ const listContacts = async () => {
   try {
     const allContacts = await hubspotClient.crm.contacts.getAll();
     console.log(allContacts.length);
+    return allContacts;
   } catch (error) {
     console.error(error);
   }
@@ -163,3 +164,15 @@ const removeAssociation = async () => {
 // removeAssociation();
 
 // ------------------------------------- Batch -------------------------------------
+const batchArchive = async () => {
+  try {
+    const threeIdsToArchive = (await listContacts())
+      .map((contact) => ({ id: contact.id }))
+      .slice(0, 3);
+
+    await hubspotClient.crm.contacts.batchApi.archive({ inputs: threeIdsToArchive });
+  } catch (error) {
+    console.error(error);
+  }
+};
+// batchArchive();
